@@ -1,36 +1,29 @@
+/*
+    FUNÇÃO PARA CONSTRUIR A ESTRUTURA
+*/
 function construir_estrutura(){
+    var tabela = ""; // INICIALIZA A TABELA
+    var pos = 0; // CONTADOR PARA COLOCAR AS CARTAS
+    var linha = 0; // CONTADOR PARA A LINHA QUE RECEBE AS CARTAS
+    cartas_aleatorio(); // GERAR POSIÇÕES ALEATÓRIAS
 
-    //var carta1 = "<div onclick='verifica(c1)'> "+c1.codigo()+"</div>";
-    //var carta2 = "<div onclick='verifica(c2)'> "+c2.codigo()+"</div>";
-    //var carta3 = "<div onclick='verifica(c3)'> "+c3.codigo()+"</div>";
-    //var carta4 = "<div onclick='verifica(c4)'> "+c4.codigo()+"</div>";
-
-
-    //var l1 = "<div class='row'> <div class='col col-lg-2'> "+carta1+" </div> <div class='col col-lg-2'> "+carta2+" </div> </div>";
-    //var l2 = "<div class='row'> <div class='col col-lg-2'> "+carta3+" </div> <div class='col col-lg-2'> "+carta4+" </div> </div>";
-
-    var tabela = "";
-    var pos = 0;
-    var linha = 0;
-
-    for(var i=0; i<3; i++){
-        console.log("Linha"+linha);
-        tabela = tabela+"<div class='row'>";
-        for(pos; pos < linha+6; pos++){
-            console.log("Pos"+pos);
-            tabela = tabela+"<div onclick='verifica(c"+carta_list[pos].id+")' class='col col-lg-2'> "+carta_list[pos].codigo()+" </div>";
+    for(var i = 0; i<4; i++){
+        tabela = tabela+"<div class='row'>"; // INICIO DA LINHA
+        for(pos; pos < linha+4; pos++){
+            console.log(carta_list[pos]);
+            tabela = tabela+"<div onclick='verifica(c"+carta_list[pos].id+")' class='col col-lg-2' style='margin: 1% 2% 1% 1%'> "+carta_list[pos].codigo()+" </div>"; // CARTA
         }
-        linha = linha+6;
-        tabela = tabela+"</div>";
+        tabela = tabela+"</div>"; // FIM DA LINHA
+        linha = linha+4; // PULA LINHA
     }
 
-    $('#mesa').html(tabela);
+    $('#mesa').html(tabela); // CRIA TABELA
 
     j1.nome = prompt("Insira o nome do jogador 1");
     j2.nome = prompt("Insira o nome do jogador 2");
     j1.id = 1;
     j2.id = 2;
-    tab.jogador(j1);
+    tab.jogador(j1); // JOGADOR 1 COMEÇA JOGANDO
 
     console.log(j1);
     console.log(j2);

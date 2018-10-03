@@ -19,6 +19,8 @@ var j2 = Object.create(Jogador);
 
 function verifica(obj){
 
+    carta_virar(obj);
+
     if(obj.ativo == true){
         if(verificacao.x == false){
             verificacao.x = true;
@@ -36,7 +38,7 @@ function verifica(obj){
     }
 
     if(verificacao.x == true && verificacao.y == true){
-        ponto();
+        setTimeout(ponto, 1000);
     }
 
     if(tab.jogo_fim()){
@@ -75,6 +77,7 @@ function reseta_verificar(){
 
 function ativar_carta(obj){
     if(verificacao.idX == obj.id || verificacao.idY == obj.id){
+        carta_padrao(obj);
         obj.ativar();
     }
 }
