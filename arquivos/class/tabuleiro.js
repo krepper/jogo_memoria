@@ -24,7 +24,17 @@ var Tabuleiro = {
     },
     jogador: function(obj){
         this.vez_jogador = obj;
-        alert("JOGA -->"+obj.nome+" | Total: "+obj.pontos+" | :)");
+
+        jogadores_lista.forEach(function(obj){
+
+            if(obj.id != tab.vez_jogador.id){
+                $("#jogador"+obj.id).css({ "color": "#000"});
+            }
+
+        });
+
+        alert("|###| SUA VEZ, "+obj.nome+" |###|");
+        $("#jogador"+obj.id).css({ "color": "#ff0000"});
     }
 }
 
