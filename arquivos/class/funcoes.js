@@ -25,7 +25,6 @@ var Jogador = {
     pontos: 0,
     imprimir: function(){
         $("#jogador"+this.id).html("<strong>JOGADOR "+this.id+"</strong>: "+this.nome+" / <strong>PONTOS</strong>: "+this.pontos);
-        console.log("#jogador"+this.id);
     }
 }
 
@@ -62,10 +61,10 @@ function verifica(obj){
 function ponto(){
     if(verificacao.valorX == verificacao.valorY){
         alert("PARABÉNSSSSS!!!");
+        y_ponto();
         jogadores_lista.forEach(function(obj){
             obj.imprimir();
         });
-        y_ponto();
     } else {
         alert("Não foi dessa vez :c");
         n_ponto();

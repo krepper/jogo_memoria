@@ -33,6 +33,8 @@ var Tabuleiro = {
 
         });
 
+        console.log(this);
+
         alert("|###| SUA VEZ, "+obj.nome+" |###|");
         $("#jogador"+obj.id).css({ "color": "#ff0000"});
     }
