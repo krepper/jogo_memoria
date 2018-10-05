@@ -1,3 +1,10 @@
+/*
+ * VERIFICAÇÕES 
+ */
+
+/*
+@@ 8
+*/
 var Verificar = {
     x: false,
     y: false,
@@ -5,38 +12,39 @@ var Verificar = {
     valorY: 5,
     idX: 0,
     idY: 0,
+    status: true,
     ponto: function(){
         if(this.x == true && this.y == true){
+            this.status = false;
             setTimeout(ponto, 500);
         }
     },
     fim: function(){
         if(tab.jogo_fim()){
-            alert("O JOGO ACABOUUU!!");
-            console.log(j1);
-            console.log(j2);
+           if(j1.pontos > j2.pontos){
+                alert(j1.nome+" GANHOU O JOGO!!! :D");
+                $("#jogador"+j1.id).css({ "color": "#3b00ff"});
+           } else if(j2.pontos > j1.pontos){
+                alert(j2.nome+" GANHOU O JOGO!!! :D");
+                $("#jogador"+j2.id).css({ "color": "#3b00ff"});
+           } else if(j2.pontos == j1.pontos){
+               alert("O JOGO EMPATOU!!! QUE TAL JOGAR NOVAMENTE? ;D");
+           }
         }
     }
 }
 
-var Jogador = {
-    nome: null,
-    id: 0,
-    pontos: 0,
-    imprimir: function(){
-        $("#jogador"+this.id).html("<strong>JOGADOR "+this.id+"</strong>: "+this.nome+" / <strong>PONTOS</strong>: "+this.pontos);
-    }
-}
-
 var verificacao = Object.create(Verificar);
-var j1 = Object.create(Jogador);
-var j2 = Object.create(Jogador);
 
-var jogadores_lista = [j1,j2];
-
+/*
+@@ 9
+*/
 function verifica(obj){
+    if(!(verificacao.status)){
+        return;
+    }
 
-    carta_virar(obj);
+    obj.carta_virar();
 
     if(obj.ativo == true){
         if(verificacao.x == false){
@@ -58,42 +66,16 @@ function verifica(obj){
     verificacao.fim();
 }
 
-function ponto(){
-    if(verificacao.valorX == verificacao.valorY){
-        alert("PARABÉNSSSSS!!!");
-        y_ponto();
-        jogadores_lista.forEach(function(obj){
-            obj.imprimir();
-        });
-    } else {
-        alert("Não foi dessa vez :c");
-        n_ponto();
-    }
-
-    reseta_verificar();
-}
-
-function y_ponto(){
-    //carta_list.forEach(ativar_carta);
-    tab.vez_jogador.pontos = tab.vez_jogador.pontos+10;
-}
-
-function n_ponto(){
-    carta_list.forEach(ativar_carta);
-    verifica_vez();
-}
-
+/*
+@@ 10
+*/
 function reseta_verificar(){
     verificacao = Object.create(Verificar);
 }
 
-function ativar_carta(obj){
-    if(verificacao.idX == obj.id || verificacao.idY == obj.id){
-        carta_padrao(obj);
-        obj.ativar();
-    }
-}
-
+/*
+@@ 11
+*/
 function verifica_vez(){
     if(tab.vez_jogador.id == j1.id){
         tab.jogador(j2);
@@ -102,13 +84,36 @@ function verifica_vez(){
     }
 }
 
-function registrar_jogadores(){
+/*
+ * JOGADORES 
+ */
 
+/*
+@@ 12
+*/
+var Jogador = {
+    nome: null,
+    id: 0,
+    pontos: 0,
+    imprimir: function(){
+        $("#jogador"+this.id).html("<strong>JOGADOR "+this.id+"</strong>: "+this.nome+" / <strong>PONTOS</strong>: "+this.pontos);
+    }
+}
+
+var j1 = Object.create(Jogador);
+var j2 = Object.create(Jogador);
+
+var jogadores_lista = [j1,j2];
+
+/*
+@@ 13
+*/
+function registrar_jogadores(){
     j1.id = 1;
     j2.id = 2;
 
     while(j1.nome == null){
-        nome = prompt("|###| INSIRA O NOME DO 1° JOGADOR |###|");
+        nome = prompt("INSIRA O NOME DO 1° JOGADOR");
         if(nome != ""){
             j1.nome = nome;
             j1.imprimir();
@@ -116,16 +121,49 @@ function registrar_jogadores(){
     }
 
     while(j2.nome == null){
-        nome = prompt("|###| INSIRA O NOME DO 2° JOGADOR |###|");
+        nome = prompt("INSIRA O NOME DO 2° JOGADOR");
         if(nome != ""){
             j2.nome = nome;
             j2.imprimir();
         }
     }
-    
-
 }
 
+/*
+ * PONTOS 
+ */
+
+
+/*
+@@ 14
+*/
+function ponto(){
+    if(verificacao.valorX == verificacao.valorY){
+        y_ponto();
+        jogadores_lista.forEach(function(obj){
+            obj.imprimir();
+        });
+    } else {
+        n_ponto();
+    }
+
+    reseta_verificar();
+}
+
+/*
+@@ 15
+*/
+function y_ponto(){
+    tab.vez_jogador.pontos = tab.vez_jogador.pontos+10;
+}
+
+/*
+@@ 16
+*/
+function n_ponto(){
+    carta_list.forEach(ativar_carta);
+    verifica_vez();
+}
 
 
 

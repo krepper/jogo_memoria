@@ -1,7 +1,10 @@
+/*
+@@ 3
+*/
 function Carta(id) {
-    this.largura = 200;
-    this.altura = 250;
-    this.cor = "#000";
+    this.largura = 120;
+    this.altura = 150;
+    this.img = "../JOGO_MEMORIA/arquivos/img/capa.jpg";
     this.id = id;
     this.valor = 0;
     this.ativo = true;
@@ -23,16 +26,21 @@ function Carta(id) {
     }
 
     function codigo(){
-        return "<div id='"+this.id+"' style='width: "+this.largura+"px; height: "+this.altura+"px; background-color: #000'></div>";
+        return "<img id='"+this.id+"' onclick='verifica(c"+this.id+")' style='width: "+this.largura+"px; height: "+this.altura+"px; background: url(../JOGO_MEMORIA/arquivos/img/capa.jpg)'></img>";
     }
 
-    function codigo_virar(){
-        return "<div id='"+this.id+"' style='width: "+this.largura+"px; height: "+this.altura+"px; background-color: "+this.cor+"'></div>";
+    function carta_virar(){
+        $("#"+this.id).css({"background": "url("+this.img+")"});
+    }
+
+    function carta_desvirar(){
+        $("#"+this.id).css({"background": "url(../JOGO_MEMORIA/arquivos/img/capa.jpg)"});
     }
 
     this.codigo = codigo;
-    this.codigo_virar = codigo_virar;
     this.desativar = desativar;
+    this.carta_virar = carta_virar;
+    this.carta_desvirar = carta_desvirar;
     this.ativar = ativar;
 }
 
@@ -54,14 +62,19 @@ var c14 = new Carta(14);
 var c15 = new Carta(15);
 var carta_list = [c0,c1,c2,c3,c4,c5,c6,c7,c8,c9,c10,c11,c12,c13,c14,c15];
 
+/*
+@@ 4
+*/
 function cartas_aleatorio(){
     var valores = [1,2,3,4,5,6,7,8];
-    var imagens = ["#4169E1","#708090","#EE82EE","#00BFFF","#000080","#5F9EA0","#DC143C","#BDB76B"];
+    var imagens = ["../JOGO_MEMORIA/arquivos/img/1.jpg","../JOGO_MEMORIA/arquivos/img/2.jpg","../JOGO_MEMORIA/arquivos/img/3.jpg","../JOGO_MEMORIA/arquivos/img/4.jpg","../JOGO_MEMORIA/arquivos/img/5.jpg","../JOGO_MEMORIA/arquivos/img/6.jpg","../JOGO_MEMORIA/arquivos/img/7.jpg","../JOGO_MEMORIA/arquivos/img/8.jpg"];
     var cartas = [c0,c1,c2,c3,c4,c5,c6,c7,c8,c9,c10,c11,c12,c13,c14,c15];
-    
     select_values(valores, imagens, cartas);
 }
 
+/*
+@@ 5
+*/
 function select_values(valores, imagens, cartas){
     var select_valor;
     var select_carta;
@@ -70,7 +83,8 @@ function select_values(valores, imagens, cartas){
         for(var i2 = 0; i2<2; i2++){
             select_carta = Math.floor(Math.random() * cartas.length);
             cartas[select_carta].valor = valores[select_valor];
-            cartas[select_carta].cor = imagens[select_valor];
+            cartas[select_carta].img = imagens[select_valor];
+            cartas[select_carta].ativo = true;
             cartas.splice(select_carta, 1);
         }
         valores.splice(select_valor, 1);
@@ -78,16 +92,21 @@ function select_values(valores, imagens, cartas){
     }
 }
 
-function carta_virar(carta){
-    $("#"+carta.id).html(carta.codigo_virar());
-}
-
-function carta_padrao(carta){
-    $("#"+carta.id).html(carta.codigo());
-}
-
+/*
+@@ 6
+*/
 function cartas_imprimir(){
     for(var i = 0; i<carta_list.length; i++){
         console.log(carta_list[i]);
+    }
+}
+
+/*
+@@ 7
+*/
+function ativar_carta(carta){
+    if(verificacao.idX == carta.id || verificacao.idY == carta.id){
+        carta.carta_desvirar();
+        carta.ativar();
     }
 }

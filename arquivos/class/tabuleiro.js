@@ -1,3 +1,6 @@
+/*
+@@ 17
+*/
 var Tabuleiro = {
     vez_jogador: 0,
     cartas_ON: carta_list.length,
@@ -26,16 +29,11 @@ var Tabuleiro = {
         this.vez_jogador = obj;
 
         jogadores_lista.forEach(function(obj){
-
             if(obj.id != tab.vez_jogador.id){
                 $("#jogador"+obj.id).css({ "color": "#000"});
             }
-
         });
 
-        console.log(this);
-
-        alert("|###| SUA VEZ, "+obj.nome+" |###|");
         $("#jogador"+obj.id).css({ "color": "#ff0000"});
     }
 }

@@ -1,12 +1,12 @@
-.carta{
-    border: 1;
-    background-color: #fff;
+body {
+    width: 500px;
+    margin: 0% auto;
 }
 
-.vez-jogador{
-    color: rgb(177, 12, 12);
+img {
+    margin : 1% 0% 0% 1%;
 }
 
-.carta:hover{
-    background-color: rgb(0, 255, 55);
+#mesa{
+    margin-top: 1%;
 }
