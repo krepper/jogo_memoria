@@ -5,6 +5,7 @@ body {
 
 img {
     margin : 1% 0% 0% 1%;
+    display: inline-block;
 }
 
 #mesa{
