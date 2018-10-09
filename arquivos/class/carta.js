@@ -67,7 +67,7 @@ var carta_list = [c0,c1,c2,c3,c4,c5,c6,c7,c8,c9,c10,c11,c12,c13,c14,c15];
 */
 function cartas_aleatorio(){
     var valores = [1,2,3,4,5,6,7,8];
-    var imagens = ["../jogo_memoria/arquivos/img/1.jpg","../jogo_memoria/arquivos/img/2.jpg","../jogo_memoria/arquivos/img/3.jpg","../jogo_memoria/arquivos/img/4.jpg","../jogo_memoria/arquivos/img/5.jpg","../jogo_memoria/arquivos/img/6.jpg","../jogo_memoria/arquivos/img/7.jpg","../jogo_memoria/arquivos/img/8.jpg"];
+    var imagens = ["../JOGO_MEMORIA/arquivos/img/1.jpg","../JOGO_MEMORIA/arquivos/img/2.jpg","../JOGO_MEMORIA/arquivos/img/3.jpg","../JOGO_MEMORIA/arquivos/img/4.jpg","../JOGO_MEMORIA/arquivos/img/5.jpg","../JOGO_MEMORIA/arquivos/img/6.jpg","../JOGO_MEMORIA/arquivos/img/7.jpg","../JOGO_MEMORIA/arquivos/img/8.jpg"];
     var cartas = [c0,c1,c2,c3,c4,c5,c6,c7,c8,c9,c10,c11,c12,c13,c14,c15];
     select_values(valores, imagens, cartas);
 }
